@@ -1,0 +1,277 @@
+/* DOM Flood Extension - Injected Styles */
+
+/* === WATER OVERLAY === */
+#dom-flood-water {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 0% !important;
+    background: linear-gradient(to bottom,
+        rgba(52, 152, 219, 0.5) 0%,
+        rgba(41, 128, 185, 0.6) 50%,
+        rgba(31, 97, 141, 0.7) 100%
+    ) !important;
+    z-index: 2147483646 !important;
+    pointer-events: none !important;
+    transition: height 0.3s ease-out !important;
+    backdrop-filter: blur(2px) !important;
+}
+
+#dom-flood-water::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%) !important;
+    animation: dom-flood-water-shimmer 3s ease-in-out infinite !important;
+}
+
+#dom-flood-water::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -5px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 10px !important;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.3) 75%,
+        transparent 100%
+    ) !important;
+    background-size: 200% 100% !important;
+    animation: dom-flood-water-wave 2s linear infinite !important;
+}
+
+@keyframes dom-flood-water-shimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes dom-flood-water-wave {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+/* === CONTROL PANEL === */
+#dom-flood-ui {
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 2147483647 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    padding: 20px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    min-width: 320px !important;
+    max-width: 400px !important;
+}
+
+#dom-flood-ui * {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#dom-flood-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 15px !important;
+}
+
+#dom-flood-title {
+    font-size: 1.3em !important;
+    font-weight: bold !important;
+    color: #2c3e50 !important;
+}
+
+#dom-flood-close {
+    background: #e74c3c !important;
+    color: white !important;
+    border: none !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    font-size: 1.2em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+#dom-flood-close:hover {
+    background: #c0392b !important;
+    transform: scale(1.1) !important;
+}
+
+#dom-flood-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 15px !important;
+    padding: 12px !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border-radius: 10px !important;
+    color: white !important;
+}
+
+#dom-flood-stats > div {
+    text-align: center !important;
+}
+
+#dom-flood-stats strong {
+    display: block !important;
+    font-size: 0.85em !important;
+    opacity: 0.9 !important;
+    margin-bottom: 5px !important;
+}
+
+#dom-flood-stats span {
+    font-size: 1.5em !important;
+    font-weight: bold !important;
+}
+
+#dom-flood-control {
+    margin-bottom: 15px !important;
+}
+
+#dom-flood-control label {
+    display: block !important;
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    margin-bottom: 10px !important;
+    font-size: 1em !important;
+}
+
+#dom-flood-slider {
+    width: 100% !important;
+    height: 8px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background: linear-gradient(to right, #3498db, #2980b9) !important;
+    outline: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    margin-bottom: 10px !important;
+}
+
+#dom-flood-slider::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 24px !important;
+    height: 24px !important;
+    background: #2980b9 !important;
+    cursor: pointer !important;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+#dom-flood-slider::-moz-range-thumb {
+    width: 24px !important;
+    height: 24px !important;
+    background: #2980b9 !important;
+    cursor: pointer !important;
+    border-radius: 50% !important;
+    border: none !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+#dom-flood-percentage {
+    text-align: center !important;
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    color: #2980b9 !important;
+}
+
+#dom-flood-modes {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+.dom-flood-mode-btn {
+    padding: 10px !important;
+    border: 2px solid #3498db !important;
+    background: white !important;
+    color: #3498db !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    font-size: 0.9em !important;
+    transition: all 0.3s ease !important;
+}
+
+.dom-flood-mode-btn:hover {
+    background: #3498db !important;
+    color: white !important;
+}
+
+.dom-flood-mode-btn.active {
+    background: #3498db !important;
+    color: white !important;
+}
+
+#dom-flood-info {
+    padding: 12px !important;
+    background: rgba(52, 152, 219, 0.1) !important;
+    border-radius: 8px !important;
+    font-size: 0.85em !important;
+    color: #2c3e50 !important;
+    line-height: 1.5 !important;
+}
+
+/* === PHYSICS EFFECTS === */
+.dom-flood-floating {
+    animation: dom-flood-float 3s ease-in-out infinite !important;
+    transition: transform 0.5s ease-out, opacity 0.3s ease !important;
+}
+
+.dom-flood-sinking {
+    transition: transform 0.8s ease-in !important;
+}
+
+.dom-flood-submerged {
+    opacity: 0.4 !important;
+    filter: blur(1px) !important;
+    pointer-events: none !important;
+}
+
+.dom-flood-wobbling {
+    animation: dom-flood-wobble 2s ease-in-out infinite !important;
+}
+
+@keyframes dom-flood-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes dom-flood-wobble {
+    0%, 100% { transform: translateX(0px) rotate(0deg); }
+    25% { transform: translateX(-3px) rotate(-1deg); }
+    75% { transform: translateX(3px) rotate(1deg); }
+}
+
+/* === DENSITY INDICATORS (DEBUG MODE) === */
+.dom-flood-debug-indicator {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    padding: 2px 6px !important;
+    font-size: 10px !important;
+    border-radius: 3px !important;
+    z-index: 2147483645 !important;
+    pointer-events: none !important;
+}

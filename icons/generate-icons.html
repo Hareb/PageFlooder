@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Extension Icons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2980b9; }
+        .icons-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .icon-box {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .instructions {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌊 DOM Flood - Icon Generator</h1>
+
+        <div class="instructions">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Click "Generate Icons" button</li>
+                <li>Right-click each icon and "Save image as..."</li>
+                <li>Save as icon16.png, icon48.png, and icon128.png in the icons/ folder</li>
+            </ol>
+        </div>
+
+        <button onclick="generateIcons()">Generate Icons</button>
+
+        <div class="icons-container" id="icons-container"></div>
+    </div>
+
+    <script>
+        const sizes = [16, 48, 128];
+
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 128;
+
+            // Background gradient
+            const bgGrad = ctx.createLinearGradient(0, 0, 0, size);
+            bgGrad.addColorStop(0, '#3498db');
+            bgGrad.addColorStop(1, '#2980b9');
+
+            // Draw background circle
+            ctx.fillStyle = bgGrad;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw water waves
+            const waveGrad = ctx.createLinearGradient(0, size * 0.6, 0, size);
+            waveGrad.addColorStop(0, 'rgba(93, 173, 226, 0.8)');
+            waveGrad.addColorStop(1, 'rgba(52, 152, 219, 1)');
+
+            ctx.fillStyle = waveGrad;
+            ctx.globalAlpha = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(size * 0.15, size * 0.65);
+            ctx.quadraticCurveTo(size * 0.27, size * 0.57, size * 0.39, size * 0.65);
+            ctx.quadraticCurveTo(size * 0.51, size * 0.73, size * 0.63, size * 0.65);
+            ctx.quadraticCurveTo(size * 0.75, size * 0.57, size * 0.87, size * 0.65);
+            ctx.lineTo(size * 0.87, size);
+            ctx.lineTo(size * 0.15, size);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.globalAlpha = 1;
+
+            // Draw water drop
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.beginPath();
+            ctx.moveTo(size/2, size * 0.2);
+            ctx.quadraticCurveTo(size * 0.43, size * 0.28, size * 0.43, size * 0.36);
+            ctx.quadraticCurveTo(size * 0.43, size * 0.48, size/2, size * 0.52);
+            ctx.quadraticCurveTo(size * 0.57, size * 0.48, size * 0.57, size * 0.36);
+            ctx.quadraticCurveTo(size * 0.57, size * 0.28, size/2, size * 0.2);
+            ctx.fill();
+
+            // Draw border
+            ctx.strokeStyle = '#2980b9';
+            ctx.lineWidth = 3 * scale;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        function generateIcons() {
+            const container = document.getElementById('icons-container');
+            container.innerHTML = '';
+
+            sizes.forEach(size => {
+                const iconBox = document.createElement('div');
+                iconBox.className = 'icon-box';
+
+                const title = document.createElement('h3');
+                title.textContent = `${size}x${size}`;
+                iconBox.appendChild(title);
+
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                drawIcon(canvas, size);
+                iconBox.appendChild(canvas);
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.textContent = 'Download';
+                downloadBtn.onclick = () => {
+                    const link = document.createElement('a');
+                    link.download = `icon${size}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                };
+                iconBox.appendChild(downloadBtn);
+
+                container.appendChild(iconBox);
+            });
+        }
+
+        // Generate on load
+        window.onload = generateIcons;
+    </script>
+</body>
+</html>

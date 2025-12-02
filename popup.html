@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Flood</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 320px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            text-align: center;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #activate-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        #activate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #deactivate-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        #deactivate-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .info {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.85em;
+            backdrop-filter: blur(10px);
+        }
+
+        .info strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .emoji {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #status {
+            text-align: center;
+            font-size: 0.9em;
+            padding: 8px;
+            margin-top: 12px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        #status.active {
+            display: block;
+            background: rgba(46, 204, 113, 0.3);
+        }
+
+        #status.inactive {
+            display: block;
+            background: rgba(231, 76, 60, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji">🌊</div>
+    <h1>DOM Flood</h1>
+    <p>Inonde la page actuelle et contrôle le chaos !</p>
+
+    <div class="buttons">
+        <button id="activate-btn">🌊 Activer l'inondation</button>
+        <button id="deactivate-btn">🔄 Désactiver</button>
+    </div>
+
+    <div id="status" class="inactive">
+        ❌ Inactif sur cette page
+    </div>
+
+    <div class="info">
+        <strong>💡 Comment jouer :</strong>
+        1️⃣ Clique sur "Activer"<br>
+        2️⃣ Utilise le slider pour contrôler l'eau<br>
+        3️⃣ Regarde les éléments flotter ou couler !
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
