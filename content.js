@@ -341,16 +341,33 @@
 
     // ==================== ACTIVATION ====================
     function activate() {
-        if (state.active) return;
+        if (state.active) {
+            console.log('🌊 DOM Flood: Already active');
+            return;
+        }
 
         console.log('🌊 DOM Flood: Activating...');
         state.active = true;
 
         createUI();
-        scanAndTagElements();
-        startPhysics();
+        console.log('🌊 DOM Flood: UI created');
 
-        console.log('🌊 DOM Flood: Active!');
+        scanAndTagElements();
+        console.log(`🌊 DOM Flood: ${state.elementsCount} elements tagged`);
+
+        startPhysics();
+        console.log('🌊 DOM Flood: Physics engine started');
+
+        // Start with a little water to make it obvious it's working
+        setTimeout(() => {
+            if (state.uiElements.slider) {
+                state.uiElements.slider.value = 20;
+                handleWaterChange({ target: { value: 20 } });
+                console.log('🌊 DOM Flood: Initial water level set to 20%');
+            }
+        }, 500);
+
+        console.log('🌊 DOM Flood: ✅ Active! Move the slider to increase water level.');
     }
 
     function deactivate() {

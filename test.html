@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page - DOM Flood</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 200px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 3px solid #e74c3c;
+        }
+
+        .instructions h2 {
+            color: #e74c3c;
+            margin-top: 0;
+        }
+
+        .instructions ol {
+            text-align: left;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="instructions">
+            <h2>🌊 Instructions pour tester DOM Flood</h2>
+            <ol>
+                <li>Clique sur l'icône de l'extension DOM Flood dans la barre d'outils</li>
+                <li>Clique sur "🌊 Activer l'inondation"</li>
+                <li>Un panneau de contrôle devrait apparaître en haut à droite</li>
+                <li>Utilise le slider pour monter le niveau d'eau</li>
+                <li>Regarde cette page se transformer en aquarium !</li>
+            </ol>
+            <p><strong>Si tu ne vois rien :</strong> Ouvre la console (F12) et vérifie s'il y a des erreurs</p>
+        </div>
+
+        <header>
+            <h1>🎮 Page de Test DOM Flood</h1>
+            <p>Cette page contient différents types d'éléments pour tester l'extension</p>
+        </header>
+
+        <div class="content">
+            <div class="card">
+                <h2>📝 Carte avec du texte</h2>
+                <p>Ce texte devrait flotter facilement car il est léger.</p>
+                <p>Les éléments de texte sont classés comme "light" dans la physique de l'eau.</p>
+                <button>Bouton (medium)</button>
+            </div>
+
+            <div class="card">
+                <div class="image-placeholder">📷 Image</div>
+                <h2>📷 Carte avec image</h2>
+                <p>Les images sont lourdes et devraient couler rapidement.</p>
+            </div>
+
+            <div class="card">
+                <div class="video-placeholder">🎥 Vidéo</div>
+                <h2>🎥 Carte avec vidéo</h2>
+                <p>Les vidéos sont très lourdes et coulent en premier.</p>
+            </div>
+
+            <div class="card">
+                <h2>🔘 Formulaire</h2>
+                <p>Les éléments de formulaire ont une densité moyenne.</p>
+                <button>Envoyer</button>
+            </div>
+
+            <div class="card">
+                <h2>📊 Stats</h2>
+                <p>Observe le panneau de contrôle pour voir combien d'éléments sont détectés et combien flottent.</p>
+            </div>
+
+            <div class="card">
+                <h2>💡 Astuce</h2>
+                <p>Essaie les deux modes : Chaos (physique réaliste) et Zen (animation douce).</p>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Footer (heavy)</h3>
+            <p>Les footers sont considérés comme lourds et devraient couler.</p>
+            <p>© 2024 DOM Flood Test</p>
+        </footer>
+    </div>
+</body>
+</html>
